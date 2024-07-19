@@ -1,0 +1,41 @@
+// using count sort 
+//time complexity beats 97.25% users
+class Solution {
+    public int findDuplicate(int[] nums) {
+      int count[] = new int[nums.length];
+      
+      for(int i=0;i<nums.length;i++){
+          count[nums[i]]++;
+          if(count[nums[i]]>1){
+            return nums[i];
+          }
+      }
+   
+      return -1;
+    }
+}
+
+
+// by linked list loop finding method 
+class Solution {
+    public int findDuplicate(int[] nums){
+    
+    //start slow and fast pointer until they meat
+    do{
+           slow = nums[i];
+           fast = nums[nums[fast]];
+           i=slow;
+    }while(nums[slow]!= nums[fast]);
+    
+    //as soon as they meet move pointer with same speed
+    slow = 0;
+    int j =0;
+    while(slow!=fast){
+        slow = nums[j];
+        j = slow;
+        fast = nums[i];
+        i = fast;
+    }
+    return slow;
+    }
+}

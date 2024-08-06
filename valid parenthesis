@@ -1,0 +1,32 @@
+class Solution {
+    public boolean isValid(String s) {
+        // boolean isValid = true;
+        Stack<Character> stk = new Stack<>();
+        int i =0;
+        while(i!=s.length()){
+            if(s.charAt(i)=='(' || s.charAt(i)=='{' || s.charAt(i)=='['){
+                stk.push(s.charAt(i));
+            }
+            else {
+                  if(stk.isEmpty()){
+                    return false;
+                  }
+                else if(stk.peek()=='(' &&  s.charAt(i)==')'){
+                   stk.pop();
+            }
+            else if(stk.peek()=='[' &&  s.charAt(i)==']'){
+                   stk.pop();
+            }
+            else if(stk.peek()=='{' &&  s.charAt(i)=='}'){
+                   stk.pop();
+            }
+             else{
+                return false;
+             }
+            }
+          i++;
+        }
+        
+        return stk.isEmpty();
+    }
+}

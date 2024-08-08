@@ -1,0 +1,77 @@
+class Solution {
+
+     public int validPalindrome2(String s,int si,int ei){
+        while(si<ei){
+            if(s.charAt(si)!=s.charAt(ei)){
+                return 0;
+            }
+            si++;
+            ei--;
+        }
+        return 1;
+     }
+
+    public boolean validPalindrome(String s) {
+        int si =0;
+        int ei = s.length()-1;
+        int count=0;
+        int t1=1;
+         int t2 =1;
+        while(si<ei){
+            if(s.charAt(si)!=s.charAt(ei)){
+               t1= validPalindrome2( s,si+1,ei);
+               t2= validPalindrome2(s,si,ei-1);
+               t1 = t1 +t2;
+               break;
+            }
+            si++;
+            ei--;
+        }
+    
+        return t1+t2>0?true:false;
+    
+
+        //below is my first approach which is not worked perfectly so i tried recursion type method which is above :)
+        // while(si<ei){
+        //     if(s.charAt(si)!=s.charAt(ei)){
+        //           count++;
+        //           if(count>1){
+        //             return false;
+        //           }
+        //         if(s.charAt(si+1)==s.charAt(ei)){
+        //          if(s.charAt(si)!=s.charAt(ei-1) ){
+        //             si++;
+        //             continue;
+        //         }
+        //         else{
+        //             if(si+1<ei)
+        //             if(s.charAt(si+2)==s.charAt(ei-1)){
+        //                 si++;
+        //                 continue;
+        //             }}
+        //         }
+                
+        //        if(s.charAt(si)==s.charAt(ei-1)){
+        //          if(s.charAt(si+1)!=s.charAt(ei)){
+        //             ei--;
+        //             continue;
+        //         }
+        //         else{
+        //             if(si<ei-1)
+        //            if(s.charAt(si+1)==s.charAt(ei-2)){
+        //             ei--;
+        //             continue;
+        //            }
+        //         }
+        //         }
+        //         //     return false;
+        //         // }
+        //     }
+        //     else{
+        //     si++;
+        //     ei--;
+        //     }
+        // }
+         
+    }
+}

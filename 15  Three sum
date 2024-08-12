@@ -1,0 +1,152 @@
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+      // three main challenges are there are:
+      // first to learn and handle arraylist
+      //   will i delete all repeated nums and make new array
+          
+
+          // new arraylist in which numbers are not repeated
+    // ArrayList<Integer> arr= new ArrayList<>();
+    //  for(int i =0;i<nums.length;i++){
+    //     int j = arr.size()-1;
+    //     while(j>=0){
+    //         if(nums[i]== arr.get(j)){
+    //             break;
+    //         }
+    //         j--;
+    //     }
+    //     if(j<0){
+    //         arr.add(nums[i]);
+    //     }
+    //  }
+    //   for(int i =0;i<nums.length;i++){
+    //     for(int j =i+1;j<nums.length;j++){
+            
+    //     }
+    //   }
+
+    //  List<List<Integer>> r= new ArrayList<>();
+      
+    //   int i =0;
+    //   int j =0;
+    //   int k =0;
+    //   while(k! = nums.length){
+    //     if(nums[i]+nums[j]+nums[k]==0){
+    //         r.add();
+    //     }
+    //   }
+
+    // r formation
+
+    //my approach
+    //  List<List<Integer>> r= new ArrayList<>();
+    // int sum =0;
+    // for(int i =0;i<nums.length;i++){
+    //     for(int j =i+1;j<nums.length;j++){
+    //        for(int k = j+1;k<nums.length;k++){
+    //             sum = nums[i] + nums[j];
+    //              sum = sum + nums[k];
+    //              if(sum == 0){
+    //  List<Integer> a = new ArrayList<>();
+    // if(nums[i]<=nums[j] && nums[i]<=nums[k]){
+    //  a.add(nums[i]);
+    //  if(nums[j]<=nums[k]){
+    //     a.add(nums[j]);
+    //     a.add(nums[k]);
+    //  }
+    //  else{
+    //     a.add(nums[k]);
+    //     a.add(nums[j]);
+    //  }
+    // }
+    // else if(nums[j]<=nums[i] && nums[j]<=nums[k]){
+    //  a.add(nums[j]);
+    //  if(nums[i]<=nums[k]){
+    //     a.add(nums[i]);
+    //     a.add(nums[k]);
+    //  }
+    //  else{
+    //     a.add(nums[k]);
+    //     a.add(nums[i]);
+    //  }
+    // }
+    // else if(nums[k]<=nums[j] && nums[k]<=nums[i]){
+    //  a.add(nums[k]);
+    //  if(nums[j]<=nums[i]){
+    //     a.add(nums[j]);
+    //     a.add(nums[i]);
+    //  }
+    //  else{
+    //     a.add(nums[i]);
+    //     a.add(nums[j]);
+    //  }
+    // }
+     
+    //  int l = r.size()-1;
+    //  while(l>=0){
+    //     if(a.equals(r.get(l))){
+    //         break;
+    //     }
+    //     l--;
+    //  }
+    //  if(l<0){
+    //                r.add(a)  ;}
+    //              }
+    //        }
+    //     }
+    // }
+
+
+
+    // for(int i =0; i<r.size(); i++){
+    //     for(int j = i+1;j<r.size();j++){
+    //     if(r.get(i).equals(r.get(j))){
+    //         r.remove(j);
+    //         j--;
+    //     }
+    //     }
+    // }
+
+List<List<Integer>> r  = new ArrayList<>();
+Arrays.sort(nums);
+for(int i=0;i<nums.length;i++){
+int p1 = i+1;
+int p2 = nums.length-1;    // -4 -1 -1 0 1 2 3
+if(i>0 && nums[i]==nums[i-1]){
+    continue;
+}
+  while(p2>p1){
+    
+    //            -4 -3 -2 -1 -1 0 0 1 2 3 4
+   
+           if(p1!=i+1 && nums[p1]==nums[p1-1]){
+            p1++;
+            continue;
+           }
+           if(p2!=(nums.length-1) && (nums[p2]==nums[p2+1]) ){
+            p2--;
+            continue;
+           }
+           if(nums[i]+nums[p1]+nums[p2]==0){
+                 List<Integer> arr = new ArrayList<>();
+                 arr.add(nums[i]);
+                 arr.add(nums[p1]);
+                 arr.add(nums[p2]);
+                 r.add(arr);
+                 p1++;
+                 p2--;
+           }
+           else if(-nums[i]>nums[p1]+nums[p2]){
+                p1++;
+           }
+           else if(-nums[i]<nums[p1]+nums[p2]){
+             p2--;
+           }
+
+  }
+  }
+
+
+    return r;
+    }
+}

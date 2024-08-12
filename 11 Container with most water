@@ -1,0 +1,48 @@
+class Solution {
+    public int maxArea(int[] height) {
+
+        //bruteforce approach time limit exceeded
+        // int largest = 0;  //index
+        // int prevLargest = 0;  //index
+        // int LargestInRemain = 0;
+        // int sum =0;
+        // for(int i=0;i<height.length;i++){
+        // int currSum =0;
+        //           System.out.println("min of two equal numbers is " + Math.min(2,2));
+        //     for(int j=i+1;j<height.length;j++){
+        //           currSum = (j-i)*Math.min(height[j],height[i]);
+        //           if(currSum>sum){
+        //             sum = currSum;
+        //           }
+        //     }
+        //     // if(height[i])
+        // }
+        //     return sum;
+
+        int stLarge = 0;
+        int endLarge = height.length-1;
+        int si =0;
+        int li =height.length-1;
+        int sum =0;
+       while(li>0){
+        if(height[li]<height[endLarge]){
+            li--;
+            continue;
+        }
+        endLarge=li;
+        stLarge =0;
+        for( si =0;si<li;si++){
+       
+           if(height[si]>=height[stLarge]){
+            stLarge = si;
+          int Currsum = (li-si)*Math.min(height[si],height[li]);
+           if(Currsum>sum){
+            sum = Currsum;
+           }
+           }
+}
+li--;
+       }
+       return sum;
+    }
+}

@@ -1,0 +1,67 @@
+class Solution {
+
+    //for recursion lets make an function
+    public List<String> generateParenthesis2(int n,int count,int len, StringBuilder s,List<String> List ){
+        if(n==len && count==0){
+            List.add(s.toString());
+            return List;
+        }
+
+        int copyCount = count;
+        int copyLen = len;
+
+        // if(count==0 && len<n){
+        //      count = count+1;     // a very big learning ++ does not change the actual value;
+        //      len  = len +1;
+        //   generateParenthesis2 (n,count,len,s.append('('),List);
+        //   s.deleteCharAt(s.length()-1);
+        //  System.out.println(s);
+        // // List.add(s);
+        // }
+        // else if(count>0){
+        //     StringBuilder copyS = s;
+        //      count--;
+            
+        //  generateParenthesis2(n,count,len,s.append(')'),List); 
+        //  s.deleteCharAt(s.length()-1);
+        // //  List.add(s);
+
+        //  if(len<n){
+        //     copyCount++;
+        //     copyLen++;
+        //   generateParenthesis2(n,copyCount,copyLen,copyS.append("("),List);
+        //   s.deleteCharAt(s.length()-1);
+        // //  List.add(s);
+        //  }
+        // }
+        
+        if(count==0 && len<n){
+
+          generateParenthesis2 (n,count+1,len+1,s.append('('),List);
+          s.deleteCharAt(s.length()-1);
+         System.out.println(s);
+        // List.add(s);
+        }
+        else if(count>0){
+            StringBuilder copyS = s;
+         generateParenthesis2(n,count-1,len,s.append(')'),List); 
+         s.deleteCharAt(s.length()-1);
+        //  List.add(s);
+
+         if(len<n){
+          generateParenthesis2(n,count+1,len+1,copyS.append("("),List);
+          s.deleteCharAt(s.length()-1);
+        //  List.add(s);
+         }
+        }
+        return List;
+    }
+    public List<String> generateParenthesis(int n) {
+        StringBuilder s = new StringBuilder();
+        // String str[] = new String[];
+        List<String> List = new ArrayList<>();
+      List = generateParenthesis2(n,0,0,s,List);
+
+        return List;
+    }
+}
